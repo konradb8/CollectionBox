@@ -1,6 +1,6 @@
 package com.github.konradb8.collectionbox.model.event;
 
-import com.github.konradb8.collectionbox.model.Currency;
+import com.github.konradb8.collectionbox.model.currency.Currency;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

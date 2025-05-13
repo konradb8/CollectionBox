@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface FundraisingEventRepository extends JpaRepository<FundraisingEvent, Long> {
-    Optional<FundraisingEvent> findByName(String name);
+    FundraisingEvent findByName(String name);
 
 }

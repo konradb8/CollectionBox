@@ -1,6 +1,6 @@
 package com.github.konradb8.collectionbox.service;
 
-import com.github.konradb8.collectionbox.model.Currency;
+import com.github.konradb8.collectionbox.model.currency.Currency;
 import com.github.konradb8.collectionbox.model.event.FundraisingEvent;
 import com.github.konradb8.collectionbox.model.event.FundraisingEventReportResponse;
 import com.github.konradb8.collectionbox.model.event.FundraisingEventRequest;
@@ -28,18 +28,6 @@ public class FundraisingEventService {
 
         return fundraisingEventRepository.save(event);
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

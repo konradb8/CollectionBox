@@ -1,6 +1,6 @@
 package com.github.konradb8.collectionbox.model.event;
 
-import com.github.konradb8.collectionbox.model.Currency;
+import com.github.konradb8.collectionbox.model.currency.Currency;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,4 +26,8 @@ public class FundraisingEvent {
     private Currency currency;
 
     private BigDecimal amount = BigDecimal.ZERO;
+
+    public boolean isEmpty(){
+        return name == null | name.isEmpty();
+    }
 }

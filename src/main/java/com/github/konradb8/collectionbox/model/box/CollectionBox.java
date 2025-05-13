@@ -1,7 +1,7 @@
 package com.github.konradb8.collectionbox.model.box;
 
 import com.github.konradb8.collectionbox.model.event.FundraisingEvent;
-import com.github.konradb8.collectionbox.model.MoneyEntry;
+import com.github.konradb8.collectionbox.model.money.MoneyEntry;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

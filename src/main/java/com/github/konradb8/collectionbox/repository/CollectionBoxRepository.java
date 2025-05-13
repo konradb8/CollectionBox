@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface CollectionBoxRepository extends JpaRepository<CollectionBox, String> {
-    Optional<CollectionBox> findByUid(String uid);
+    CollectionBox findByUid(String uid);
     List<CollectionBox> findByEvent(FundraisingEvent event);
 }

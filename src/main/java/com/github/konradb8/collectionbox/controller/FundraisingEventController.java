@@ -18,11 +18,14 @@ public class FundraisingEventController {
 
     private final FundraisingEventService fundraisingEventService;
 
+    // 1
     @PostMapping
     public ResponseEntity<FundraisingEvent> createFundraisingEvent(@RequestBody FundraisingEventRequest request) {
         FundraisingEvent createdEvent = fundraisingEventService.createFundraisingEvent(request);
         return new ResponseEntity<>(createdEvent, HttpStatus.CREATED);
     }
+
+    // 8
     @GetMapping("/report")
     public ResponseEntity<List<FundraisingEventReportResponse>> getReport() {
         return ResponseEntity.ok(fundraisingEventService.getReport());
