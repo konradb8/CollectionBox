@@ -68,7 +68,7 @@ class CollectionBoxControllerTests {
     void whenAssignBox_thenOk() throws Exception {
         mvc.perform(MockMvcRequestBuilders.put("/v1/collection-box/assign/BOX1/EVENT1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("Box BOX1 assigned to event EVENT1"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Box BOX1 assigned to event EVENT1"));
         verify(service).assignBox("BOX1", "EVENT1");
     }
 
@@ -78,7 +78,7 @@ class CollectionBoxControllerTests {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"boxUid\":\"BOX1\",\"currency\":\"USD\",\"amount\":10}"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("Funds added:  10 USD"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Funds added:  10 USD"));
         verify(service).addFunds(any());
     }
 
@@ -86,7 +86,7 @@ class CollectionBoxControllerTests {
     void whenTransfer_thenOk() throws Exception {
         mvc.perform(MockMvcRequestBuilders.put("/v1/collection-box/transfer/BOX1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("Money transfered from box: BOX1 to its event"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message").value("Money transfered from box: BOX1 to its event"));
         verify(service).transfer("BOX1");
     }
 }
