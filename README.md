@@ -1,9 +1,17 @@
 # Collection box application
-#### Collection boxes management app for Fundraising Events
+#### Collection boxes management app for Fundraising Events.
+
+## Requirements
+- Maven 4.0.0 or higher
+- Java 21
+- Spring Boot 3.4.5
 ## How to build and run:
+1. Download .zip and unpack or clone repository
+2. In terminal type:
 ```bash
-mvn spring-boot:run
+   mvn spring-boot:run
 ```
+
 
 ## Available API Endpoints:
 ### Base URL:
@@ -55,13 +63,14 @@ http://localhost:8080/v1/
 #### Endpoint `DELETE`: http://localhost:8080/v1/collection-box/BOX1
 #### Output:
 ![img4](.media/img4.png)
-![img5](.media/img5.png)
 
+![img5](.media/img5.png)
 
 
 #### Endpoint `PUT`: http://localhost:8080/v1/collection-box/assign/BOX3/Event1
 #### Output:
 ![img6](.media/img6.png)
+
 ![img7](.media/img7.png)
 
 #### Endpoint `PUT`: http://localhost:8080/v1/collection-box/addfunds
@@ -76,6 +85,7 @@ http://localhost:8080/v1/
 ```
 #### Output:
 ![img8](.media/img8.png)
+
 ![img9](.media/img9.png)
 
 #### Endpoint `PUT`: http://localhost:8080/v1/collection-box/transfer/BOX3
