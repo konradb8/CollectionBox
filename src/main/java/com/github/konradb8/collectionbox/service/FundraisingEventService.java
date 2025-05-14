@@ -26,14 +26,19 @@ public class FundraisingEventService {
         event.setCurrency(currency);
         event.setAmount(BigDecimal.ZERO);
 
+        if(event.getName() == null || event.getCurrency() == null || event.getAmount() == null) {
+            throw new IllegalArgumentException("Fundraising event name and amount cannot be empty");
+        }
+
         return fundraisingEventRepository.save(event);
     }
 
 
-
-
     public List<FundraisingEventReportResponse> getReport(){
         List<FundraisingEvent> events = fundraisingEventRepository.findAll();
+        if(events.isEmpty()){
+            throw new RuntimeException("No events found");
+        }
         return events.stream()
                 .map(event -> new FundraisingEventReportResponse(
                         event.getName(),

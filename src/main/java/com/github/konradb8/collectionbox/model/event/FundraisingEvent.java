@@ -28,6 +28,6 @@ public class FundraisingEvent {
     private BigDecimal amount = BigDecimal.ZERO;
 
     public boolean isEmpty(){
-        return name == null | name.isEmpty();
+        return name == null || name.isEmpty();
     }
 }

@@ -16,7 +16,7 @@ public class ExchangeRateService {
         this.restTemplate = restTemplate;
     }
 
-    BigDecimal getExchangeRate(Currency from, Currency to) {
+    public BigDecimal getExchangeRate(Currency from, Currency to) {
         String url = "https://api.exchangerate-api.com/v4/latest/" + from;
         ExchangeRateResponse response = restTemplate.getForObject(url, ExchangeRateResponse.class);
         return response.getRates().get(to.toString());

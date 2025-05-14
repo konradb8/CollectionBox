@@ -9,6 +9,7 @@ import com.github.konradb8.collectionbox.model.box.CollectionBoxRequest;
 import com.github.konradb8.collectionbox.model.event.FundraisingEvent;
 import com.github.konradb8.collectionbox.repository.CollectionBoxRepository;
 import com.github.konradb8.collectionbox.repository.FundraisingEventRepository;
+import com.github.konradb8.collectionbox.repository.MoneyEntryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class CollectionBoxService {
     private final FundraisingEventService fundraisingEventService;
     private final FundraisingEventRepository fundraisingEventRepository;
     private final ExchangeRateService exchangeRateService;
+    private final MoneyEntryRepository moneyEntryRepository;
 
     public void registerBox(CollectionBoxRequest request) {
         if(collectionBoxRepository.existsById(request.getUid())){
@@ -74,20 +76,32 @@ public class CollectionBoxService {
 
     public void deleteBox(String uid){
         CollectionBox collectionBox = collectionBoxRepository.findByUid(uid);
+        if(collectionBox == null){
+            throw new RuntimeException("Collection box does not exist");
+        }
+
+        List<MoneyEntry> entries = collectionBox.getMoneyEntryList();
         collectionBoxRepository.delete(collectionBox);
+        moneyEntryRepository.deleteAll(entries);
+
     }
+
     public void assignBox(String uid, String eventName){
         CollectionBox collectionBox = collectionBoxRepository.findByUid(uid);
         FundraisingEvent fundraisingEvent = fundraisingEventRepository.findByName(eventName);
+
+        if(collectionBox.getEvent() != null){
+            throw new RuntimeException("Collection box already assigned");
+        }
 
         collectionBox.setEvent(fundraisingEvent);
         collectionBoxRepository.save(collectionBox);
     }
 
-    public void transfer (String uid){
+    public void transfer(String uid){
         CollectionBox collectionBox = collectionBoxRepository.findByUid(uid);
         if(collectionBox.getEvent() == null){
-            throw new RuntimeException("No event to be transferred");
+            throw new RuntimeException("Collection box is not assigned to any event");
         }
         FundraisingEvent fundraisingEvent = fundraisingEventRepository.findByName(collectionBox.getEvent().getName());
         Currency currency = fundraisingEvent.getCurrency();
